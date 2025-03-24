@@ -22,17 +22,17 @@
 
         <form class="form" action="/main" method="post">
             <p class="name">Email</p>
-            <input id="email" class="input" type="email" name="email"> 
+            <input id="email" class="input" type="email" name="email" required> 
             <p class="name">Password</p>
-            <input id="password"  class="input" minlength="4"  type="password" name="password">
+            <input id="password"  class="input" minlength="4"  type="password" name="password" required>
             <p class="name">Repet password</p>
-            <input id="confirmPassword"  class="input" minlength="4"  type="password" > 
+            <input id="confirmPassword"  class="input" minlength="4"  type="password" required> 
             <p class="name">Username</p>
-            <input id="username"  class="input"  type="text" name="username">
+            <input id="username"  class="input"  type="text" name="username" required>
             <p class="name">Monthly budget</p>
-            <input id="budget" class="input" type="number" name="monthlyBudget">
+            <input id="budget" class="input" type="number" name="monthlyBudget" required>
 
-            <button id="submit" type="button">Sumbit</button>
+            <button id="submit" type="submit">Sumbit</button>
         </form>
     </div>
 </body>

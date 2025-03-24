@@ -1,7 +1,7 @@
 const pool = require("./db");
 
 async function createUser(username, password, email, monthlyBudget) {
-    let query = `insert into users (username, password, email, monthlyBudget) values ('${username}', '${password}' , '${email}',  '${monthlyBudget}' );`;
+    let query = `insert into users (username, password, email, monthlyBudget) values ('${username}', '${password}' , '${email}',  '${monthlyBudget}');`;
     // const query = `INSERT INTO users (login, password) VALUES ($1, $2);`;
     // const values = [login, password];
 
