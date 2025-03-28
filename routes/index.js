@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var { createUser, authUser } = require('../model/UserRepo');
+var UserRepository = require('../model/UserRepo');
 
 router.get('/', async function(req, res, next) {
   res.render('index', { title: 'Express' });

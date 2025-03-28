@@ -1,14 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var { createUser, authUser } = require('../model/UserRepo');
+var authService = require('../services/authServuce');
 
 router.get('/', function(req, res, next) {
     res.render('signin');
 });
 
 router.post('/login', async function(req, res, next) {
-  let {username, password} = req.body;
-  let resp = await authUser(username, password);
+  await authService.auth(req, req.body.username, req.body.password);
   res.redirect('/main');
 });
 

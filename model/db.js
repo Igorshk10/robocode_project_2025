@@ -9,4 +9,15 @@ const pool = new Pool({
     max: 20,
 });
 
-module.exports = pool;
+const runQuery = async (query, params = []) => {
+    const client = await pool.connect();
+    try {
+        return await client.query(query, params);
+    } catch (e) {
+        throw e;
+    } finally {
+        client.release();
+    }
+}
+
+module.exports = runQuery;

@@ -1,43 +1,46 @@
-const pool = require("./db");
+const runQuery = require("./db");
+const bcrypt = require('bcrypt');
 
-async function createUser(username, password, email, monthlyBudget) {
-    let query = `insert into users (username, password, email, monthlyBudget) values ('${username}', '${password}' , '${email}',  '${monthlyBudget}')   RETURNING username;`;
-    // const query = `INSERT INTO users (login, password) VALUES ($1, $2);`;
-    // const values = [login, password];
 
-    const client = await pool.connect();
-    try {
-        return (await client.query(query)).rows[0];
-    } catch (err) {
-    } finally {
-        client.release();
-    }
+const UserRepository = {
+    createUser: async (username, password, email, monthlyBudget) => {
+        // const query = `INSERT INTO users (login, password) VALUES ($1, $2);`;
+        // const values = [login, password]
+        const hashedPassword = await bcrypt.hash(password, 10);
+        try {
+            const query = await runQuery(`insert into users (username, password, email, monthlyBudget) values ($1, $2 , $3, $4)   RETURNING *;`, [username, hashedPassword, email, monthlyBudget]); ;
+            return query.rows[0];
+        } catch (err) {
+        }
+    },
+    
+    getUserByUsernameAndPassword: async (username, password) => {
+        try {
+            const query = await runQuery(`SELECT * FROM users WHERE username = '${username}' AND password = '${password}';`);
+            return query.rows[0];
+        } catch (err) {
+        }
+    },
+    
+    //В setTransaction треба передати ще й user_id
+    setTransaction: async (user_id, category , transactionAmount) => {
+        try {
+            const query = await runQuery(`insert into usersTransaction (user_id, category, transaction_amount) values ($1, $2, $3) ;`, [user_id, category, transactionAmount]); ;
+            return query.rows[0];
+        } catch (err) {
+        }
+    }, 
+    getUserByUsername: async (username) => {
+        try {
+            const result = await runQuery(`SELECT * FROM users WHERE username = $1` , [username]);
+            return result.rows[0];
+        } catch (error) {
+            console.error('Error getting user by username:', error);
+            throw error;
+        }
+    },
 }
 
-async function authUser(username, password) {
-    let query = `SELECT * FROM users WHERE username = '${username}' AND password = '${password}';`;
 
-    const client = await pool.connect();
-    try {
-        return (await client.query(query)).rows[0];
-    } catch (err) {
-    } finally {
-        client.release();
-    }
-}
 
-async function setTransaction(category , transactionAmount) {
-    let query = `insert into usersTransaction (category, transaction_amount) values ('${category}', '${transactionAmount}') ;`;
-    // const query = `INSERT INTO users (login, password) VALUES ($1, $2);`;
-    // const values = [login, password];
-
-    const client = await pool.connect();
-    try {
-        return (await client.query(query)).rows[0];
-    } catch (err) {
-    } finally {
-        client.release();
-    }
-}
-
-module.exports = { createUser, authUser, setTransaction };
+module.exports = UserRepository;

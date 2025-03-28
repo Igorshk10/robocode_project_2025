@@ -9,7 +9,7 @@
 }
 
 .header{
-    width: 100%;
+    width: 100vw;
     height: 10vh;
     border-bottom: 2px solid black;
     color: rgb(0, 0, 0);
@@ -149,19 +149,43 @@
 .title{
     margin:5px;
     font-family: sans-serif;
-    margin-right: 75vw;
+    margin-right: 70vw;
     font-weight: 800;
 }
 
 .username{
-    margin-right: 30px;
+    margin-right: 10px;
     font-family: sans-serif;
     font-weight: 600;   
-    display: flex;  
-    justify-self: flex-end;
     align-items: center;
     justify-content: center;
 }
+
+.logout{
+    margin: 10px;
+    padding: 7px 15px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    font-weight: 800;
+    width: 100px;
+    height: 40px;
+    transition: all 0.3s;
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+}
+
+.logout:hover{
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+}
+.logout:active{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    transition: all 0.1s;
+}   
 
 .transaction{
     width: 100%;
@@ -327,3 +351,4 @@
     color: rgb(0, 0, 0);
     transition: all 0.1s;
 }
+

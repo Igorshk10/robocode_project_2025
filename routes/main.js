@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var { createUser, authUser , setTransaction } = require('../model/UserRepo');
+var authService = require('../services/authServuce');
+var UserService = require('../services/userService');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -8,9 +9,18 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/transaction', async function(req, res, next) {
-    let {category, transactionAmount} = req.body;
-    let resp = await setTransaction(category, transactionAmount);
+    const userId = req.session.user.id;
+    await UserService.addTransaction(userId, req.body.category, req.body.transactionAmount);
     res.redirect('/main');
+});
+
+router.get("/logout", async (req, res) => {
+    try {
+        const result = await authService.logout(req);
+        res.redirect('/');
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 });
 
 
