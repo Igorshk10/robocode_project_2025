@@ -6,6 +6,8 @@ router.get('/', async function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+/*
+
 router.post('/register',  async function(req, res, next) {
   let {username, password} = req.body;
   await createUser(username, password);
@@ -16,6 +18,6 @@ router.post('/login', async function(req, res, next) {
   let {username, password} = req.body;
   let resp = await authUser(username, password);
   res.render('user', { username: resp.login});
-}); 
+}); */
 
 module.exports = router;

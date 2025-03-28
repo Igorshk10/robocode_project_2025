@@ -14,8 +14,8 @@ async function createUser(username, password, email, monthlyBudget) {
     }
 }
 
-async function authUser(login, password) {
-    let query = `SELECT * FROM users WHERE login = '${login}' AND password = '${password}';`;
+async function authUser(username, password) {
+    let query = `SELECT * FROM users WHERE username = '${username}' AND password = '${password}';`;
 
     const client = await pool.connect();
     try {

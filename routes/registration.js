@@ -7,10 +7,13 @@ router.get('/', function(req, res, next) {
     res.render('registration');
 });
 
-/* router.post('/login', async function(req, res, next) {
-  let {username, password} = req.body;
-  let resp = await authUser(username, password);
-  res.render('user', { username: resp.login});
-});  */
+
+router.post('/registr', async function(req, res, next) {
+  let {username, password , email , monthlyBudget} = req.body;
+  let resp = await createUser(username, password, email , monthlyBudget);
+  res.redirect('/main');
+}); 
+
+
 
 module.exports = router;
