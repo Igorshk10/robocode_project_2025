@@ -4,9 +4,21 @@ var authService = require('../services/authServuce');
 var UserService = require('../services/userService');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', async function(req, res, next) {
     const user_username = req.session.user.username;
-    res.render('main', { username: user_username });
+ //   const userId = req.session.user.id;
+ //   const transaction = await UserService.getTransactionById(userId);
+    res.render('main', { username: user_username});
+});
+
+router.get('/api/transactions', async function(req, res) {
+    const userId = req.session.user.id;
+    try {
+        const transactions = await UserService.getTransactionById(userId);
+        res.json(transactions);
+    } catch (error) {
+        res.status(500).json({ error: 'Не вдалося отримати транзакції' });
+    }
 });
 
 router.post('/transaction', async function(req, res, next) {

@@ -39,6 +39,13 @@ const UserRepository = {
             throw error;
         }
     },
+    getTransactionById: async (user_id) => {
+        try {
+            const query = await runQuery(`SELECT category, SUM(transaction_amount) AS total_amount FROM usersTransaction WHERE user_id = $1 GROUP BY category;`, [user_id]);
+            return query.rows[0];
+        } catch (err) {
+        }
+    },
 }
 
 

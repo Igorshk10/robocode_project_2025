@@ -19,6 +19,16 @@ $(document).ready(function () {
         $('.body').css('overflow', 'visible');
     });
 
+$.ajax({
+    type: "method",
+    url: "/main/api/transactions",
+    data: "data",
+    dataType: "dataType",
+    success: function (response) {
+        console.log(response);
+    }
+});
+
     const ctx = document.getElementById('myChart');
 
     new Chart(ctx, {

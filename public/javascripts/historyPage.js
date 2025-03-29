@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    const transactionsJs = JSON.stringify(transactions) ;
+    console.log(transactionsJs);
     $('.burger_btn').click(function (e) { 
         $('.burger_window').addClass('visible');
         $('.body').css('overflow', 'hidden');
