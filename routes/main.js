@@ -5,7 +5,8 @@ var UserService = require('../services/userService');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    res.render('main');
+    const user_username = req.session.user.username;
+    res.render('main', { username: user_username });
 });
 
 router.post('/transaction', async function(req, res, next) {

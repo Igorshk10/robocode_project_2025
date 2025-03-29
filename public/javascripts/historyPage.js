@@ -19,27 +19,6 @@ $(document).ready(function () {
         $('.body').css('overflow', 'visible');
     });
 
-    const ctx = document.getElementById('myChart');
-
-    new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        labels:  ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-        label: 'UAH',
-        data: [700, 129, 356, 522, 1200, 343],
-        borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-        y: {
-            beginAtZero: true
-        }
-        }
-    }
-    });
-
     $(function() {
         var selectValue,
             $cSelect = $('.select-list');
@@ -57,6 +36,5 @@ $(document).ready(function () {
             selectValue = $('.select').find('option:selected').text()
         }
     });
-
 
 });
