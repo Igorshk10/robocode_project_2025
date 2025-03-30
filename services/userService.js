@@ -7,6 +7,9 @@ const UserService = {
     getTransactionById: async (user_id) => {
         return await UserRepository.getTransactionById(user_id);
     },
+    updateUsername: async (newUsername , password , user_id) => {
+        return await UserRepository.updateUsername( newUsername, password, user_id);
+    },
 }
 
 module.exports = UserService;

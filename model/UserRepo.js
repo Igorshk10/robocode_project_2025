@@ -44,8 +44,18 @@ const UserRepository = {
             const query = await runQuery(`SELECT category, SUM(transaction_amount) AS total_amount FROM usersTransaction WHERE user_id = $1 GROUP BY category;`, [user_id]);
             return query.rows[0];
         } catch (err) {
+            console.error('Error in getTransactionById:', err);
+            throw err; 
         }
     },
+    updateUsername: async ( newUsername, password, user_id) => {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        try {
+            const query = await runQuery(`UPDATE users SET username = $1 WHERE password = $2 AND id = $3;`, [newUsername, hashedPassword, user_id]);
+            return query.rows[0];
+        } catch (err) {
+        }
+    } 
 }
 
 

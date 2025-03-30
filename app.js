@@ -11,6 +11,7 @@ var registrationRouter = require('./routes/registration')
 var mainRouter = require('./routes/main')
 var signInRouter = require('./routes/signin')
 var historyRouter = require('./routes/history')
+var profileRoyter = require('./routes/profile')
 
 var app = express();
 
@@ -25,10 +26,15 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-  secret: 'your-secret-key',
+  secret: 'secret',
   resave: false,            
-  saveUninitialized: true,  
-  cookie: { secure: false } 
+  saveUninitialized: false,  
+  cookie: { 
+    secure: false,
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24 
+    } ,
+  store: new session.MemoryStore()
 }));
 
 app.use('/', indexRouter);
@@ -37,6 +43,7 @@ app.use('/registration', registrationRouter )
 app.use('/main', mainRouter )
 app.use('/signin', signInRouter )
 app.use('/history', historyRouter )
+app.use('/profile', profileRoyter )
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
