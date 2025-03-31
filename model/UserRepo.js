@@ -39,6 +39,15 @@ const UserRepository = {
             throw error;
         }
     },
+    getUserById: async (user_id) => {
+        try {
+            const result = await runQuery(`SELECT * FROM users WHERE id = $1` , [user_id]);
+            return result.rows[0];
+        } catch (error) {
+            console.error('Error getting user by ID:', error);
+            throw error;
+        }
+    },
     getTransactionById: async (user_id) => {
         try {
             const query = await runQuery(`SELECT category, SUM(transaction_amount) AS total_amount FROM usersTransaction WHERE user_id = $1 GROUP BY category;`, [user_id]);
@@ -48,12 +57,14 @@ const UserRepository = {
             throw err; 
         }
     },
-    updateUsername: async ( newUsername, password, user_id) => {
-        const hashedPassword = await bcrypt.hash(password, 10);
+    updateUsername: async ( newusername, user_id) => {
         try {
-            const query = await runQuery(`UPDATE users SET username = $1 WHERE password = $2 AND id = $3;`, [newUsername, hashedPassword, user_id]);
+            const query = await runQuery(`UPDATE users SET username = $1 WHERE id = $2;`, [newusername, user_id]);
+            console.log('Query result:', query);
             return query.rows[0];
         } catch (err) {
+            console.error('Error update:', err);
+            throw err;
         }
     } 
 }

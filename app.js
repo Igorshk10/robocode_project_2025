@@ -25,6 +25,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
 app.use(session({
   secret: 'secret',
   resave: false,            
@@ -35,7 +37,7 @@ app.use(session({
     maxAge: 1000 * 60 * 60 * 24 
     } ,
   store: new session.MemoryStore()
-}));
+})); 
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

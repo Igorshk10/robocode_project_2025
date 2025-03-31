@@ -3,12 +3,17 @@ var router = express.Router();
 var authService = require('../services/authServuce');
 
 router.get('/', function(req, res, next) {
-    res.render('signin');
+    res.render('signin' , { error: null });
 });
 
 router.post('/login', async function(req, res, next) {
-  await authService.auth(req, req.body.username, req.body.password);
-  res.redirect('/main');
+  try{
+    await authService.auth(req, req.body.username, req.body.password);
+    res.redirect('/main');
+  } catch (error) {
+    res.render('signin', { error: error.message });
+  }
+
 });
 
 module.exports = router;

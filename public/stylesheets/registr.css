@@ -52,3 +52,10 @@
     font-weight: 900;
     margin-top: 20px;
 }
+
+.error{
+    color: rgb(58, 0, 0);
+    font-size: 14px;
+    margin: 5px;
+    font-family: sans-serif;
+}

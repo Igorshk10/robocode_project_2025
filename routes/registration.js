@@ -4,14 +4,19 @@ var authService = require('../services/authServuce');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    res.render('registration');
+    res.render('registration', { error: null });
 });
 
 
 router.post('/registr', async function(req, res, next) {
-  await authService.createUser(req.body.username, req.body.password, req.body.email, req.body.monthlyBudget);
-  await authService.auth(req, req.body.username, req.body.password, req.body.email, req.body.monthlyBudget);
-  res.redirect('/main');
+  try{
+    await authService.createUser(req.body.username, req.body.password, req.body.email, req.body.monthlyBudget);
+    await authService.auth(req, req.body.username, req.body.password, req.body.email, req.body.monthlyBudget);
+    res.redirect('/main');
+  } catch (error) {
+    res.render('registration', { error: error.message });
+  }
+
 }); 
 
 //let {username, password , email , monthlyBudget} = req.body;
