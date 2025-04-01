@@ -20,26 +20,33 @@ $(document).ready(function () {
     });
 
 
-    const ctx = document.getElementById('myChart');
+    $.get("/main/api/transaction", function (data, textStatus, jqXHR) {
+            console.log(data.transaction);
+            let transactions = data.transaction;
+            const ctx = document.getElementById('myChart');
 
-    new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        labels:  ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-        label: 'UAH',
-        data: [700, 129, 356, 522, 1200, 343],
-        borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-        y: {
-            beginAtZero: true
-        }
-        }
-    }
-    });
+            new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: transactions.map(transaction => transaction.category),
+                datasets: [{
+                label: 'UAH',
+                data: transactions.map(transaction => transaction.total_amount),
+                borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                y: {
+                    beginAtZero: true
+                }
+                }
+            }
+            });
+
+        },
+    );
+
 
     $(function() {
         var selectValue,

@@ -6,9 +6,17 @@ var UserService = require('../services/userService');
 /* GET users listing. */
 router.get('/', async function(req, res, next) {
     const user_username = req.session.user.username;
+    //const userId = req.session.user.id;
+    //const transaction = await UserService.getTransactionById(userId);
+    res.render('main', { username: user_username});
+});
+
+router.get('/api/transaction', async function(req, res, next) {
     const userId = req.session.user.id;
     const transaction = await UserService.getTransactionById(userId);
-    res.render('main', { username: user_username});
+    res.json({
+        transaction: transaction
+    });
 });
 
 

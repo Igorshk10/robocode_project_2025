@@ -51,7 +51,7 @@ const UserRepository = {
     getTransactionById: async (user_id) => {
         try {
             const query = await runQuery(`SELECT category, SUM(transaction_amount) AS total_amount FROM usersTransaction WHERE user_id = $1 GROUP BY category;`, [user_id]);
-            return query.rows[0];
+            return query.rows;
         } catch (err) {
             console.error('Error in getTransactionById:', err);
             throw err; 
@@ -59,7 +59,7 @@ const UserRepository = {
     },
     updateUsername: async ( newusername, user_id) => {
         try {
-            const query = await runQuery(`UPDATE users SET username = $1 WHERE id = $2;`, [newusername, user_id]);
+            const query = await runQuery(`UPDATE users SET username = $1 WHERE id = $2 RETURNING *;`, [newusername, user_id]);
             console.log('Query result:', query);
             return query.rows[0];
         } catch (err) {
