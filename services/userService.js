@@ -22,6 +22,9 @@ const UserService = {
         }
         return await UserRepository.updateUsername( newusername, user_id);
     },
+    getAllCategory: async () => {
+        return await UserRepository.getAllCategory();
+    }
 }
 
 module.exports = UserService;

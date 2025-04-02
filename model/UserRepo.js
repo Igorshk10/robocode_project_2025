@@ -66,7 +66,16 @@ const UserRepository = {
             console.error('Error update:', err);
             throw err;
         }
-    } 
+    } , 
+    getAllCategory: async () => {
+        try{
+            const query = await runQuery(`SELECT categoryName FROM categories;`);
+            return query.rows;
+        } catch (err) {
+            console.error('Error in getAllCategory:', err);
+            throw err; 
+        }
+    }
 }
 
 

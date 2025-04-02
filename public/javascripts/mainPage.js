@@ -47,24 +47,50 @@ $(document).ready(function () {
         },
     );
 
-
+/*
     $(function() {
-        var selectValue,
-            $cSelect = $('.select-list');
-        
+        let selectValue
+        let $select = $('.select-list');
         getVal();
-        $('.select-text').text(selectValue);
-        
-        $cSelect.on('change', function() {
-            getVal()
-            $('.selected-text').text(selectValue);
-            $(this).blur();
-        });
+
+    if ($select.length > 0) {
+            getVal();
+            $('.select-text').text(selectValue);
+    
+            // Додаємо обробник події
+            $select.on('change', function() {
+                getVal();
+                $('.selected-text').text(selectValue);
+                $(this).blur();
+            });
+        } else {
+            console.log('Елемент select-list не знайдений!');
+        }
         
         function getVal() {
             selectValue = $('.select').find('option:selected').text()
         }
-    });
+    }); 
 
+*/
+
+const selectDiv = document.querySelector('.select_div')
+const selectOption = document.querySelector('.select_option')
+const selectVal = document.querySelector('#select_val')
+const optionsList = document.querySelectorAll('.options li')
+
+$(selectOption).click(function (e) { 
+    selectDiv.classList.toggle('active')
+    
+});
+
+optionsList.forEach(function (optionsListSingle) {
+    $(optionsListSingle).click(function (e) { 
+        text = this.textContent
+        selectVal.value = text
+        selectDiv.classList.remove('active')
+        
+    });
+})
 
 });
