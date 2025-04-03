@@ -18,6 +18,7 @@ cmake-build-*/
 .idea/**/mongoSettings.xml
 *.iws
 out/
+/node_modules
 .idea_modules/
 atlassian-ide-plugin.xml
 .idea/replstate.xml
@@ -88,3 +89,4 @@ dist
 .yarn/install-state.gz
 .pnp.*
 /.idea/
+.vercel
