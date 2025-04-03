@@ -1,0 +1,425 @@
+.body{
+    margin: 0;
+    /*     overflow: hidden; */
+}
+
+.main{
+    width: 100%;
+    height: 100vh;
+}
+
+.header{
+    width: 100vw;
+    height: 10vh;
+    border-bottom: 2px solid black;
+    color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0px 3px 5px rgba(161, 161, 161, 0.24); */
+}
+
+.burger_window{
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    position: absolute;
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+
+.burger_window.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.burger_menu{
+    z-index: 3;
+    height: 100%;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: white;
+    border-right: 2px solid black;
+}
+
+#close_burger_menu{
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    background-color: white;
+    border: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+}
+
+.list{
+    width: 100%;
+    height: 80%;
+}
+
+.grafic{
+    margin: 40px 0px;
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.list_item{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 3px 0px;
+    padding: 12px 7px;
+    border-radius: 5px;
+    transition: all 0.3s;
+    border: 0px;
+    background-color: white;
+}
+
+.list_icon{
+    color: black;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 6px;
+}
+
+.list_text{
+    color: black;
+
+}
+
+.list a{
+    text-decoration: none;
+}
+
+.list_item:hover{
+    background-color: rgb(231, 231, 231) ;
+}
+
+.burger_btn{
+    border: 2px solid rgb(175, 175, 175);
+    background-color: white;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    margin: 5px 15px;
+    transition: all 0.3s;
+}
+
+.burger_btn:hover{
+    background-color: rgb(224, 224, 224);
+}
+.burger_btn:active{
+    background-color: white;
+    transition: all 0.1s;
+}
+
+#logo{
+    height: 70%;
+    margin: 5px 15px 5px;
+    transition: all 0.3s;
+}
+
+#logo:hover{
+    scale: 1.1;
+}
+
+#line{
+    border: 1px solid rgb(0, 0, 0);
+    height: 70%;
+    margin: 3px;
+}
+
+.title{
+    margin:5px;
+    font-family: sans-serif;
+    margin-right: 70vw;
+    font-weight: 800;
+}
+
+.username{
+    margin: 0;
+    margin-right: 10px;
+    font-family: sans-serif;
+    font-weight: 600;   
+    align-items: center;
+    justify-content: center;
+}
+
+.logout{
+    margin: 10px;
+    padding: 7px 15px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    font-weight: 800;
+    width: 100px;
+    height: 40px;
+    transition: all 0.3s;
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+}
+
+.logout:hover{
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+}
+.logout:active{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    transition: all 0.1s;
+}   
+
+.transaction{
+    width: 100%;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+}
+
+#add_transaction{
+    margin: 10px;
+    padding: 5px 12px;
+    background-color: black;
+    color: white;
+    border: 0px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#add_transaction:active{
+    background-color: rgb(50, 50, 50);
+    color: rgb(255, 255, 255);
+}
+
+.transaction_window{
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100vw;
+    height: 100vh; /*  Проблема с чорним фоном*/
+    z-index: 4;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0; 
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+
+.transaction_window.visible {
+    opacity: 1;
+    visibility: visible;
+
+}
+
+.transaction_table{
+    border-radius: 7px;
+    z-index: 5;
+    width: 35%;
+    height: 40%;
+    background-color: white;
+    display: flex;
+    padding: 15px;
+    flex-direction: column;
+}
+
+.transaction_text{
+    font-family: sans-serif;
+    padding: 0;
+    margin: 5px;
+}
+
+.transaction_input{
+    margin: 5px;
+    width: 45%;
+    border: 2px solid rgb(0, 0, 0);
+    height: 22px;
+    font-size: 14px;
+}
+
+
+#close_transaction_form{
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    background-color: white;
+    border: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+}
+
+.transaction_form{
+    width: 90%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    flex-wrap: wrap;
+}
+/*
+.select {
+    position: relative;
+  }
+  
+.select-list {
+    height: 0;
+    width: 0;
+    opacity: 0;
+    position: absolute;
+    left: 5px;
+    top: 100%;
+  }
+  
+.select-text {
+    cursor: default;
+    display: inline-block;
+    padding: 1px 18px 1px 4px;
+    border: 1px solid #aaa;
+    border-radius: 1px;
+    position: relative;
+    font-size: 13px;
+    font-family: sans-serif;
+    margin: 5px;
+    width: 45%;
+    border: 2px solid rgb(0, 0, 0);
+    word-wrap: break-word;
+}
+  
+.select-text:after {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 3px 0 3px;
+    border-color: #000 transparent transparent transparent;
+    top: 0; bottom: 0; right: 6px;
+    margin: auto;
+  }
+  
+.select-text:focus + select,
+.select-list:focus {
+    height: auto; width: 300px;
+    overflow-y: scroll;
+    opacity: 1;
+  } */
+
+
+  .button-container {
+    width: 100%;
+    margin-top: 10px;
+}
+
+  #submit_transaction{
+    margin: 5px;
+    margin-top: 20px;
+    padding: 7px 15px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    font-weight: 800;
+    width: 30%;
+    transition: all 0.3s;
+  }
+
+  #submit_transaction:hover{
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+}
+
+#submit_transaction:active{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    transition: all 0.1s;
+}
+
+
+.select_div{
+    width: 45%;
+    position: relative;
+    margin: 5px;
+}
+
+.select_option{
+    position: relative;
+}
+
+.select_option input{
+    height: 22px;
+    width: 100%;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.select_option:after{
+    content: "";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    margin-top: -8px;
+}
+
+.select_content{
+    background-color: white;
+    position: absolute;
+    color: black;
+    border-radius: 7px;
+    margin-top: 15px;
+    width: 100%;
+    z-index: 9;
+    border: 1px solid black;
+    display: none;
+}
+
+.options{
+    margin-top: 10px;
+    max-height: 150px;
+    overflow-y: auto;
+    padding: 0;
+}
+
+.options li{
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-bottom: 1px solid rgb(196, 196, 196);
+}
+
+.options li:hover{
+    background-color: #f1f1f1;
+}
+
+.select_div.active .select_content{
+    display: block;
+}
+
+.select_div.active .select_option:after{
+    transform: rotate(-180deg);
+}

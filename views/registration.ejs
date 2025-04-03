@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/registr.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/themes/default.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/themes/semantic.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/themes/bootstrap.min.css"/>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.js"></script>
+    <script src="./javascripts/registr.js"></script>
+</head>
+<body>
+    <div class="main">
+        <img class="logo" src="https://icons.iconarchive.com/icons/iconka/business-outline/512/piggy-bank-icon.png" alt="">
+
+        <p id="text">Sign Up to Piggy Bank</p>
+
+        <form class="form" action="/registration/registr" method="post">
+            <p class="name">Email</p>
+            <input id="email" class="input" type="email" name="email" required> 
+            <p class="name">Password</p>
+            <input id="password"  class="input" minlength="4"  type="password" name="password" required>
+            <p class="name">Repet password</p>
+            <input id="confirmPassword"  class="input" minlength="4"  type="password" required> 
+            <p class="name">Username</p>
+            <input id="username"  class="input"  type="text" name="username" required>
+            <p class="name">Monthly budget</p>
+            <input id="budget" class="input" type="number" name="monthlyBudget" required>
+            <b class="error"> <%= error %> </b>
+
+            <button id="submit" type="submit">Sumbit</button>
+        </form>
+    </div>
+</body>
+</html>
