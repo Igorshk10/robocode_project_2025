@@ -1,12 +1,17 @@
+require('dotenv').config('../.env');
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'postgres',
-    password: 'root12',
-    port: 5432,
-    max: 20,
+    user: process.env.DATABASE_USER,
+    host: process.env.DATABASE_HOST,
+    database: process.env.DATABASE_NAME,
+    password: process.env.DATABASE_PASSWORD,
+    port: process.env.DATABASE_PORT,
+    max: process.env.DATABASE_MAX,
+    ssl: {
+        rejectUnauthorized: false,
+        ca: process.env.DATABASE_SSL,
+    },
 });
 
 const runQuery = async (query, params = []) => {
