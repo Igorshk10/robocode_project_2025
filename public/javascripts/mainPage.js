@@ -30,7 +30,7 @@ $(document).ready(function () {
             data: {
                 labels: transactions.map(transaction => transaction.category),
                 datasets: [{
-                label: 'UAH',
+                label: 'USD',
                 data: transactions.map(transaction => transaction.total_amount),
                 borderWidth: 1
                 }]

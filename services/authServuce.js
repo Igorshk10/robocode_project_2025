@@ -19,7 +19,7 @@ const authService = {
         if (!isPasswordValid) {
             throw new Error("Invalid credentials");
         }
-        req.session.user = {id: user.id, username: user.username, monthlyBudget: user.monthlyBudget};
+        req.session.user = {id: user.id, username: user.username, monthlyBudget: user.monthlybudget};
 
         return {message: "Login successful"};
     },

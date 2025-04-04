@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/login', async function(req, res, next) {
   try{
-    await authService.auth(req, req.body.username, req.body.password);
+    await authService.auth(req, req.body.username.toLocaleLowerCase().trim(), req.body.password);
     res.redirect('/main');
   } catch (error) {
     res.render('signin', { error: error.message });

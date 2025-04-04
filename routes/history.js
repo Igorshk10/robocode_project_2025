@@ -4,7 +4,10 @@ var UserService = require('../services/userService');
 
 router.get('/', async function(req, res, next) {
     const user_username = req.session.user.username;
-    res.render('history', { username: user_username });
+    const userId = req.session.user.id;
+    const transaction = await UserService.getTransactionById(userId);
+    console.log(transaction);
+    res.render('history', { username: user_username , transaction: transaction });
 });
 
 

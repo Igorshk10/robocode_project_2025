@@ -24,7 +24,21 @@ const UserService = {
     },
     getAllCategory: async () => {
         return await UserRepository.getAllCategory();
-    }
+    }, 
+    updateMonthlyBudget: async (  newMonthlyBudget , password , user_id) => {
+        if (!newMonthlyBudget || !password) {
+            throw new Error("Monthly budget or password must be non empty");
+        }
+        const user = await UserRepository.getUserById(user_id);
+        if (!user) {
+            throw new Error("User not found");
+        }    
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
+            throw new Error("Invalid credentials");
+        }
+        return await UserRepository.updateMonthlyBudget( newMonthlyBudget, user_id);
+    },
 }
 
 module.exports = UserService;

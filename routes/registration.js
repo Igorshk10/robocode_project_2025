@@ -10,8 +10,8 @@ router.get('/', function(req, res, next) {
 
 router.post('/registr', async function(req, res, next) {
   try{
-    await authService.createUser(req.body.username, req.body.password, req.body.email, req.body.monthlyBudget);
-    await authService.auth(req, req.body.username, req.body.password, req.body.email, req.body.monthlyBudget);
+    await authService.createUser(req.body.username.toLocaleLowerCase().trim(), req.body.password, req.body.email, req.body.monthlyBudget);
+    await authService.auth(req, req.body.username.toLocaleLowerCase().trim(), req.body.password, req.body.email, req.body.monthlyBudget);
     res.redirect('/main');
   } catch (error) {
     res.render('registration', { error: error.message });

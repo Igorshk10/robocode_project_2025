@@ -11,7 +11,7 @@ const pool = new Pool({
     ssl: {
         rejectUnauthorized: false,
         ca: process.env.DATABASE_SSL,
-    },
+    }, 
 });
 
 const runQuery = async (query, params = []) => {

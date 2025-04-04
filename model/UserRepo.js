@@ -8,7 +8,7 @@ const UserRepository = {
         // const values = [login, password]
         const hashedPassword = await bcrypt.hash(password, 10);
         try {
-            const query = await runQuery(`insert into users (username, password, email, monthlyBudget) values ($1, $2 , $3, $4)   RETURNING *;`, [username, hashedPassword, email, monthlyBudget]); ;
+            const query = await runQuery(`insert into users (username, password, email, monthlybudget) values ($1, $2 , $3, $4)   RETURNING *;`, [username, hashedPassword, email, monthlyBudget]); ;
             return query.rows[0];
         } catch (err) {
         }
@@ -25,7 +25,7 @@ const UserRepository = {
     //В setTransaction треба передати ще й user_id
     setTransaction: async (user_id, category , transactionAmount) => {
         try {
-            const query = await runQuery(`insert into usersTransaction (user_id, category, transaction_amount) values ($1, $2, $3) ;`, [user_id, category, transactionAmount]); ;
+            const query = await runQuery(`insert into userstransaction (user_id, category, transaction_amount) values ($1, $2, $3) ;`, [user_id, category, transactionAmount]); ;
             return query.rows[0];
         } catch (err) {
         }
@@ -50,7 +50,7 @@ const UserRepository = {
     },
     getTransactionById: async (user_id) => {
         try {
-            const query = await runQuery(`SELECT category, SUM(transaction_amount) AS total_amount FROM usersTransaction WHERE user_id = $1 GROUP BY category;`, [user_id]);
+            const query = await runQuery(`SELECT category, SUM(transaction_amount) AS total_amount FROM userstransaction WHERE user_id = $1 GROUP BY category;`, [user_id]);
             return query.rows;
         } catch (err) {
             console.error('Error in getTransactionById:', err);
@@ -67,6 +67,16 @@ const UserRepository = {
             throw err;
         }
     } , 
+    updateMonthlyBudget: async ( newMonthlyBudget, user_id) => {
+        try {
+            const query = await runQuery(`UPDATE users SET monthlybudget = $1 WHERE id = $2 RETURNING *;`, [newMonthlyBudget, user_id]);
+            console.log('Query result:', query);
+            return query.rows[0];
+        } catch (err) {
+            console.error('Error update:', err);
+            throw err;
+        }
+    },
     getAllCategory: async () => {
         try{
             const query = await runQuery(`SELECT categoryName FROM categories;`);
