@@ -28,7 +28,8 @@ router.post('/transaction', async function(req, res, next) {
 
 router.get("/logout", async (req, res) => {
     try {
-        const result = await authService.logout(req);
+        req.session = null
+        res.clearCookie('user');
         res.redirect('/');
     } catch (error) {
         res.status(500).json({ error: error.message });
