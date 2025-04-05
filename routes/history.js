@@ -5,7 +5,7 @@ var UserService = require('../services/userService');
 router.get('/', async function(req, res, next) {
     const user_username = req.session.user.username;
     const userId = req.session.user.id;
-    const transaction = await UserService.getTransactionById(userId);
+    const transaction = await UserService.getHistoryOfTransaction(userId);
     console.log(transaction);
     const category = await UserService.getAllCategory();
     console.log(category);
@@ -17,6 +17,17 @@ router.post('/transaction', async function(req, res, next) {
     const userId = req.session.user.id;
     await UserService.addTransaction(userId, req.body.category, req.body.transactionAmount);
     res.redirect('/history');
+});
+
+
+
+router.get("/logout", async (req, res) => {
+    try {
+        const result = await authService.logout(req);
+        res.redirect('/');
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 });
 
 module.exports = router;

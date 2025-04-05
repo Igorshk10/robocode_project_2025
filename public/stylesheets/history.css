@@ -8,6 +8,51 @@
     height: 100vh;
 }
 
+html, body {
+    height: 100%;  /* Забезпечує повне заповнення екрану */
+    margin: 0;  /* Вимикає стандартні відступи браузера */
+    padding: 0;
+}
+
+.transaction_window{
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100vw;
+    height: 100vh; 
+    z-index: 4;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0; 
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.burger_window{
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;  /* Фіксоване позиціонування на екрані */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; 
+    z-index: 2;
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+
+
+.burger_window.visible, .transaction_window.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
 .header{
     width: 100vw;
     height: 10vh;
@@ -19,7 +64,7 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     /* box-shadow: 0px 3px 5px rgba(161, 161, 161, 0.24); */
 }
-
+/*
 .burger_window{
     background-color: rgba(0, 0, 0, 0.8);
     width: 100vw;
@@ -36,7 +81,7 @@
 .burger_window.visible {
     opacity: 1;
     visibility: visible;
-}
+} */
 
 .burger_menu{
     z-index: 3;
@@ -204,11 +249,11 @@
     background-color: rgb(50, 50, 50);
     color: rgb(255, 255, 255);
 }
-
+/*
 .transaction_window{
     background-color: rgba(0, 0, 0, 0.8);
     width: 100vw;
-    height: 100vh; /*  Проблема с чорним фоном*/
+    height: 100vh; 
     z-index: 4;
     position: absolute;
     display: flex;
@@ -224,7 +269,7 @@
     opacity: 1;
     visibility: visible;
 
-}
+} */
 
 .transaction_table{
     border-radius: 7px;
@@ -391,7 +436,7 @@
     margin: 10px 0px;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgb(225, 225, 225);
-    overflow: hidden;
+    overflow-y: hidden;
 }
 
 .table_header{

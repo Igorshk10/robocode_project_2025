@@ -32,5 +32,15 @@ router.post('/newmonthlybudget', async function(req, res, next) {
 
 });
 
+
+router.get("/logout", async (req, res) => {
+    try {
+        const result = await authService.logout(req);
+        res.redirect('/');
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 module.exports = router;
 

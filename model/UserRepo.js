@@ -85,6 +85,16 @@ const UserRepository = {
             console.error('Error in getAllCategory:', err);
             throw err; 
         }
+    },
+    getHistoryOfTransaction: async (user_id) => {
+        try{
+        const query = await runQuery(`select category, transaction_amount from userstransaction where user_id = $1;`, [user_id]);
+        return query.rows;
+        }catch (err) {
+            console.error('Error in getHistoryOfTransaction:', err);
+            throw err; 
+
+        }
     }
 }
 

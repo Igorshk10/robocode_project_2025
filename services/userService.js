@@ -39,6 +39,9 @@ const UserService = {
         }
         return await UserRepository.updateMonthlyBudget( newMonthlyBudget, user_id);
     },
+    getHistoryOfTransaction: async (user_id) => {
+        return await UserRepository.getHistoryOfTransaction(user_id);
+    },
 }
 
 module.exports = UserService;
