@@ -1,6 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
-var session = require('express-session');
+var session = require('cookie-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -35,8 +35,7 @@ app.use(session({
     secure: false,
     httpOnly: true,
     maxAge: 1000 * 60 * 60 * 24 
-    } ,
-  store: new session.MemoryStore()
+    }
 })); 
 
 app.use('/', indexRouter);
