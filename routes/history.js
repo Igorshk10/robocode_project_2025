@@ -7,7 +7,9 @@ router.get('/', async function(req, res, next) {
     const userId = req.session.user.id;
     const transaction = await UserService.getTransactionById(userId);
     console.log(transaction);
-    res.render('history', { username: user_username , transaction: transaction });
+    const category = await UserService.getAllCategory();
+    console.log(category);
+    res.render('history', { username: user_username , transaction: transaction,  category: category });
 });
 
 

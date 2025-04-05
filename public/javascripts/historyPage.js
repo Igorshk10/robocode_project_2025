@@ -37,4 +37,23 @@ $(document).ready(function () {
         }
     });
 
+    const selectDiv = document.querySelector('.select_div')
+    const selectOption = document.querySelector('.select_option')
+    const selectVal = document.querySelector('#select_val')
+    const optionsList = document.querySelectorAll('.options li')
+    
+    $(selectOption).click(function (e) { 
+        selectDiv.classList.toggle('active')
+        
+    });
+    
+    optionsList.forEach(function (optionsListSingle) {
+        $(optionsListSingle).click(function (e) { 
+            text = this.textContent
+            selectVal.value = text
+            selectDiv.classList.remove('active')
+            
+        });
+    })
+
 });

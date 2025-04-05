@@ -11,7 +11,7 @@ var registrationRouter = require('./routes/registration')
 var mainRouter = require('./routes/main')
 var signInRouter = require('./routes/signin')
 var historyRouter = require('./routes/history')
-var profileRoyter = require('./routes/profile')
+var profileRouter = require('./routes/profile')
 
 var app = express();
 
@@ -45,7 +45,7 @@ app.use('/registration', registrationRouter )
 app.use('/main', mainRouter )
 app.use('/signin', signInRouter )
 app.use('/history', historyRouter )
-app.use('/profile', profileRoyter )
+app.use('/profile', profileRouter )
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
