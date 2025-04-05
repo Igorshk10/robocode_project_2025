@@ -7,7 +7,6 @@ var UserService = require('../services/userService');
 router.get('/', async function(req, res, next) {
     const user_username = req.session.user.username;
     const category = await UserService.getAllCategory();
-    console.log(category);
     res.render('main', { username: user_username , category: category});
 });
 
@@ -21,8 +20,14 @@ router.get('/api/transaction', async function(req, res, next) {
 
 
 router.post('/transaction', async function(req, res, next) {
+    const today = new Date();
+    const day = today.getDate().toString().padStart(2, '0');
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const year = today.getFullYear();   
+
+    const transaction_date = `${day}.${month}.${year}`;
     const userId = req.session.user.id;
-    await UserService.addTransaction(userId, req.body.category, req.body.transactionAmount);
+    await UserService.addTransaction(userId, req.body.category, req.body.transactionAmount, transaction_date);
     res.redirect('/main');
 });
 

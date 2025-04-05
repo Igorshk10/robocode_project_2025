@@ -5,8 +5,9 @@ var UserService = require('../services/userService');
 router.get('/', async function(req, res, next) {
     const user_username = req.session.user.username;
     const user_monthlyBudget = req.session.user.monthlyBudget;
+    const date_of_registration = req.session.user.date_of_registration;
     console.log(user_monthlyBudget);
-    res.render('profile', { username: user_username , monthlyBudget: user_monthlyBudget, error: null });
+    res.render('profile', { username: user_username , monthlyBudget: user_monthlyBudget, date_of_registration: date_of_registration, error: null });
 });
 
 

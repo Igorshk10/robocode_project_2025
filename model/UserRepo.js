@@ -3,12 +3,12 @@ const bcrypt = require('bcrypt');
 
 
 const UserRepository = {
-    createUser: async (username, password, email, monthlyBudget) => {
+    createUser: async (username, password, email, monthlyBudget, date_of_registration) => {
         // const query = `INSERT INTO users (login, password) VALUES ($1, $2);`;
         // const values = [login, password]
         const hashedPassword = await bcrypt.hash(password, 10);
         try {
-            const query = await runQuery(`insert into users (username, password, email, monthlybudget) values ($1, $2 , $3, $4)   RETURNING *;`, [username, hashedPassword, email, monthlyBudget]); ;
+            const query = await runQuery(`insert into users (username, password, email, monthlybudget, date_of_registration) values ($1, $2 , $3, $4, $5)   RETURNING *;`, [username, hashedPassword, email, monthlyBudget, date_of_registration]); ;
             return query.rows[0];
         } catch (err) {
         }
@@ -23,9 +23,9 @@ const UserRepository = {
     },
     
     //В setTransaction треба передати ще й user_id
-    setTransaction: async (user_id, category , transactionAmount) => {
+    setTransaction: async (user_id, category , transactionAmount, transaction_date) => {
         try {
-            const query = await runQuery(`insert into userstransaction (user_id, category, transaction_amount) values ($1, $2, $3) ;`, [user_id, category, transactionAmount]); ;
+            const query = await runQuery(`insert into userstransaction (user_id, category, transaction_amount, transaction_date) values ($1, $2, $3, $4) ;`, [user_id, category, transactionAmount, transaction_date]); ;
             return query.rows[0];
         } catch (err) {
         }
@@ -60,7 +60,6 @@ const UserRepository = {
     updateUsername: async ( newusername, user_id) => {
         try {
             const query = await runQuery(`UPDATE users SET username = $1 WHERE id = $2 RETURNING *;`, [newusername, user_id]);
-            console.log('Query result:', query);
             return query.rows[0];
         } catch (err) {
             console.error('Error update:', err);
@@ -70,7 +69,6 @@ const UserRepository = {
     updateMonthlyBudget: async ( newMonthlyBudget, user_id) => {
         try {
             const query = await runQuery(`UPDATE users SET monthlybudget = $1 WHERE id = $2 RETURNING *;`, [newMonthlyBudget, user_id]);
-            console.log('Query result:', query);
             return query.rows[0];
         } catch (err) {
             console.error('Error update:', err);
@@ -88,8 +86,13 @@ const UserRepository = {
     },
     getHistoryOfTransaction: async (user_id) => {
         try{
-        const query = await runQuery(`select category, transaction_amount from userstransaction where user_id = $1;`, [user_id]);
-        return query.rows;
+       // const query = await runQuery(`select transaction_date ,category, transaction_amount from userstransaction where user_id = $1;`, [user_id]);
+        const query = await runQuery(`SELECT userstransaction.transaction_date, userstransaction.category, userstransaction.transaction_amount , categories.img_url
+            FROM userstransaction
+            INNER JOIN categories ON userstransaction.category = categories.categoryname
+            inner join users on userstransaction.user_id = users.id
+            where users.id = $1;` , [user_id]);
+            return query.rows;
         }catch (err) {
             console.error('Error in getHistoryOfTransaction:', err);
             throw err; 

@@ -428,10 +428,13 @@ html, body {
     width: 100%;
     height: auto;
     overflow-y: auto ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .history_table{
-    width: 100%;
+    width: 95%;
     height: auto;
     margin: 10px 0px;
     border-radius: 5px;

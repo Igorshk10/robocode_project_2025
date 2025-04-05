@@ -8,10 +8,10 @@ const pool = new Pool({
     password: process.env.DATABASE_PASSWORD,
     port: process.env.DATABASE_PORT,
     max: process.env.DATABASE_MAX,
-    ssl: {
+     ssl: {
         rejectUnauthorized: false,
         ca: process.env.DATABASE_SSL,
-    }, 
+    },  
 });
 
 const runQuery = async (query, params = []) => {

@@ -161,7 +161,6 @@
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
                             </svg>
                         </button>
-                        <b class="error"> <%= error %> </b>
                     </div> 
                     <div class="user_item" id="user_monthlyBudget">
                         <% if (typeof username !== 'undefined') { %>
@@ -176,9 +175,13 @@
                         </button>
                     </div>
                     <div class="user_item">
-                        <p class="info" id="date">Date of registration: </p>
+                        <% if (typeof username !== 'undefined') { %>
+                            <p class="info" id="date">Date of registration: <%= date_of_registration %></p>
+                        <% } else { %>
+                            <p class="info" id="date">Date of registration: date of registration </p>
+                        <% } %>
                     </div>
-                    
+                    <b class="error"> <%= error %> </b>
                     <!--<button class="change">Change data</button>-->   
                 </div>
 

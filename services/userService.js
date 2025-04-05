@@ -2,8 +2,8 @@ const UserRepository = require('../model/UserRepo');
 const bcrypt = require('bcrypt');
 
 const UserService = {
-    addTransaction: async (user_id, category, transactionAmount) => {
-        return await UserRepository.setTransaction(user_id, category , transactionAmount);
+    addTransaction: async (user_id, category, transactionAmount, transaction_date) => {
+        return await UserRepository.setTransaction(user_id, category , transactionAmount, transaction_date);
     },
     getTransactionById: async (user_id) => {
         return await UserRepository.getTransactionById(user_id);
