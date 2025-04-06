@@ -13,8 +13,10 @@ router.get('/', async function(req, res, next) {
 
 router.post('/newusername', async function(req, res, next) {
     const userId = req.session.user.id;
+    console.log(userId);
     try{
         await UserService.updateUsername( req.body.newusername.toLocaleLowerCase().trim(), req.body.password , userId);
+        req.session.user.username = req.body.newusername.toLocaleLowerCase().trim();
         res.redirect('/profile');
     } catch (error) {
         res.render('profile', { error: error.message });
@@ -26,6 +28,8 @@ router.post('/newmonthlybudget', async function(req, res, next) {
     const userId = req.session.user.id;
     try{
         await UserService.updateMonthlyBudget( req.body.newMonthlyBudget, req.body.password , userId);
+        req.session.user.monthlyBudget = req.body.newMonthlyBudget
+        console.log('Updated budget in session:', req.session.user.monthlybudget);
         res.redirect('/profile');
     } catch (error) {
         res.render('profile', { error: error.message });

@@ -11,8 +11,13 @@ router.get('/', async function(req, res, next) {
 });
 
 router.get('/api/transaction', async function(req, res, next) {
+    const today = new Date();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const year = today.getFullYear(); 
+    const formatDate = `.${month}.${year}`;
+    
     const userId = req.session.user.id;
-    const transaction = await UserService.getTransactionById(userId);
+    const transaction = await UserService.getTransactionById(userId , formatDate);
     res.json({
         transaction: transaction
     });

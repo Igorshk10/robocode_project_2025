@@ -3,9 +3,14 @@ var router = express.Router();
 var UserService = require('../services/userService');
 
 router.get('/', async function(req, res, next) {
+    const today = new Date();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const year = today.getFullYear(); 
+    const formatDate = `.${month}.${year}`;
+    
     const user_username = req.session.user.username;
     const userId = req.session.user.id;
-    const transaction = await UserService.getHistoryOfTransaction(userId);
+    const transaction = await UserService.getHistoryOfTransaction(userId, formatDate);
     const category = await UserService.getAllCategory();
     res.render('history', { username: user_username , transaction: transaction,  category: category });
 });
