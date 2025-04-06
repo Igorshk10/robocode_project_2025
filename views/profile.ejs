@@ -164,8 +164,8 @@
                     </div> 
                     <div class="user_item" id="user_monthlyBudget">
                         <% if (typeof username !== 'undefined') { %>
-                            <p class="info">Monthly budget: <%= monthlyBudget %></p>
-                        <% } else { %>
+                            <p class="info">Monthly budget: $ <%= monthlyBudget %></p>
+                        <% } else { %> 
                             <p class="info">Monthly budget: monthly budget</p>
                         <% } %>
                         <button class="info_update" id="change_monthlyBudget"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -182,7 +182,6 @@
                         <% } %>
                     </div>
                     <b class="error"> <%= error %> </b>
-                    <!--<button class="change">Change data</button>-->   
                 </div>
 
             </div>
